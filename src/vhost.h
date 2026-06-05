@@ -2,7 +2,8 @@
 
 #include <vector>
 #include <cstdint>
-
+#include "logger.h"
+#include "messenger.h"
 
 // Forward declaration of DPDK structure to avoid polluting global namespace
 struct rte_mempool;
