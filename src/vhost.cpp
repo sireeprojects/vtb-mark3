@@ -62,9 +62,9 @@ void VhostController::configure_and_start_ports() {
 
         // 3. Filter and parse explicitly for vhost virtual devices (net_vhost PMD)
         if (dev_info.driver_name && std::string(dev_info.driver_name).find("vhost") != std::string::npos) {
-            // VTB_LOG(INFO) << "Discovered Vhost Device: port_id=" << port_id 
-            //           << ", driver=" << dev_info.driver_name 
-            //           << ", queues_requested=" << dev_info.max_rx_queues << std::endl;
+            VTB_LOG(INFO) << "Discovered Vhost Device: port_id=" << port_id 
+                      << ", driver=" << dev_info.driver_name 
+                      << ", queues_requested=" << dev_info.max_rx_queues;
             
             setup_port(port_id);
             active_ports.push_back(port_id);
@@ -124,7 +124,7 @@ void VhostController::setup_port(uint16_t port_id) {
 
     // 5. Allow all frame capture targets (common target behavior for virtual backends)
     rte_eth_promiscuous_enable(port_id);
-    VTB_LOG(INFO) << "Successfully configured and started port " << port_id << std::endl;
+    VTB_LOG(INFO) << "Successfully configured and started port " << port_id;
 }
 
 void VhostController::check_and_print_link_status() const {
